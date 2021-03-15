@@ -34,9 +34,6 @@ h1, h2, h3, h4, h5, h6, p, div, section, span, input {
 			}
 		}
 		.App-title {
-			display: flex;
-			flex-direction: column;
-			justify-content: start;
 			h1, h3 {
 				color: $purple;
 			}
@@ -81,6 +78,21 @@ h1, h2, h3, h4, h5, h6, p, div, section, span, input {
 				&::before {
 					background-color: darken($white, 10%);
 					transition: all .4s ease-in-out;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 1064px)
+{
+	.App {
+		section {
+			display: flex;
+			flex-direction: column;
+			.App-title {
+				h1, h3 {
+					text-align: center;
 				}
 			}
 		}
