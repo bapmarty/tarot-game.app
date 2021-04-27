@@ -4,10 +4,28 @@ services:
   app:
     build: ./app/
     ports:
-      - 8000:3000
+      - ${APP_PORT}:3000
+    environment:
+      API_PORT: ${API_PORT}
+      APP_PORT: ${APP_PORT}
     volumes:
       - ./app/package.json:/usr/src/package.json
       - ./app/:/usr/src/
+      - /usr/src/node_modules
+    networks:
+      - tarot_game
+
+  api:
+    build: ./api/
+    ports:
+      - ${API_PORT}:${API_PORT_INTERNAL}
+    environment:
+      API_PORT: ${API_PORT}
+      API_PORT_INTERNAL: ${API_PORT_INTERNAL}
+      APP_PORT: ${APP_PORT}
+    volumes:
+      - ./api/package.json:/usr/src/package.json
+      - ./api/:/usr/src/
       - /usr/src/node_modules
     networks:
       - tarot_game
