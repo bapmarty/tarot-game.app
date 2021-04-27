@@ -1,27 +1,30 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import logo from './logo.svg';
 import './assets/scss/index.scss';
+import Navbar from './Layouts/Navbar';
+
+import { useState, useEffect } from 'react';
+import { io } from 'socket.io-client';
+import Routes from './Router/Routes';
+const socket = io.connect("http://192.168.1.14:8001", { transports: ['websocket']});
+
 
 
 function App() {
-  function handleOpenGithubLink () {
-    window.open("https://github.com/baptistemrt/tarot-game.app", "_blank");
-  }
+  
+  const [userConnection, setUserConnection] = useState(0);
+  const [socketId, setSocketId] = useState("");
+  
+  useEffect(() => {
+    socket.on("user connected", (userCount, socketId) => {
+      console.log(userCount);
+      setUserConnection(userCount);
+      setSocketId(socketId);
+    });
+  }, []);
+ 
   return (
     <div className="App">
-      <section>
-        <div className="App-logo">
-          <img src={logo} alt={"landing logo"} />
-        </div>
-        <div className="App-title">
-          <h1>Du tarot, point.</h1>
-          <h3>L'application est en développement...</h3>
-        </div>
-      </section>
-      <div className="github-button">
-        <button onClick={handleOpenGithubLink} >GitHub <FontAwesomeIcon icon={faGithub} /></button>
-      </div>
+      <Navbar />
+      <Routes />
     </div>
   );
 }
