@@ -1,0 +1,133 @@
+@import "../variables";
+ 
+.navbar {
+  display: flex;
+  position: relative;
+  height: 70px;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+  &::before {
+    position: absolute;
+    content: "";
+    width: 110%;
+    height: 170px;
+    background: #FEFEFE;
+    top: -80px;
+    border-bottom: 1px solid #EEE;
+    left: -10px;
+    transform: rotate(-2deg);
+    z-index: -1000;
+  }
+  &::after {
+    position: absolute;
+    content: "";
+    width: 110%;
+    height: 40px;
+    background: $purple;
+    left: -10px;
+    top: 70px;
+    transform: rotate(-2deg);
+    z-index: -10000;
+  }
+  .navbar-logo-top {
+    display: flex;
+    align-items: center;
+    margin-left: 25px;
+    .title {
+      position: relative;
+      h3 {
+        display: inline;
+        font-weight: 600;
+        font-size: 1.6rem;
+        color: $purple;
+      }
+      span {
+        position: absolute;
+        display: block;
+        font-size: .9rem;
+        top: 55px;
+        left: 30px;
+        width: 100%;
+      }
+    }
+    .navbar-nav {
+      margin: 0 0 0 25px;
+      .navbar-nav-list {
+        display: flex;
+        list-style-type: none;
+        font-size: 1.1rem;
+        font-weight: 600;
+        .navbar-nav-item {
+          position: relative;
+          padding: 0 5px;
+          margin: 0 15px;
+          a {
+            color: $dark;
+            text-decoration: none;
+            z-index: 100;
+            &.active {
+              color: $purple;
+            }
+            &::before {
+              position: absolute;
+              content: "";
+              width: 0;
+              left: 5px;
+              bottom: -5px;
+              height: 4px;
+              background: $white;
+              z-index: -1;
+              border-radius: 5px;
+              transition: all .3s ease-in-out;
+            }
+            transition: all .3s ease-in-out;
+            &:hover {
+              color: $purple;
+              &::before {
+                position: absolute;
+                content: "";
+                width: calc(100% - 10px);
+                left: 5px;
+                bottom: -5px;
+                height: 4px;
+                background: $purple;
+                z-index: -1;
+                border-radius: 5px;
+                transition: all .3s ease-in-out;
+              }
+              transition: all .3s ease-in-out;
+            }
+          }
+        }
+      }
+    }
+  }
+  .navbar-nav-login {
+    margin-right: 25px;
+    .navbar-nav-login-list {
+      display: flex;
+      align-items: center;
+      list-style-type: none;
+      .login-btn {
+        a {
+          text-decoration: none;
+          font-size: 1.1rem;
+          color: $white;
+          background-color: $purple;
+          padding: 7px 9px;
+          border-radius: 5px;
+          transition: all .2s ease-in-out;
+          font-weight: 600;
+          &:hover {
+            background-color: darken($purple, 5%);
+            transition: all .2s ease-in-out;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 840px) {
+}
